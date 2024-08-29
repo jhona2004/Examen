@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edades de Estudiantes</title>
+</head>
+<body>
+    <h2>Ingrese la cantidad de estudiantes:</h2>
+    <input type="number" id="cantidad" min="1">
+    <button onclick="procesarEdades()">Aceptar</button>
+
+    <div id="resultados"></div>
+
+    <script>
+        function procesarEdades() {
+            let cantidad = parseInt(document.getElementById('cantidad').value);
+            let edades = [];
+            let mayores = 0;
+            let menores = 0;
+
+            for (let i = 1; i <= cantidad; i++) {
+                let edad = parseInt(prompt(`Ingrese la edad del estudiante ${i}:`));
+                edades.push(edad);
+                if (edad >= 18) {
+                    mayores++;
+                } else {
+                    menores++;
+                }
+            }
+
+            edades.sort((a, b) => b - a);
+
+            let resultadosHTML = `<h3>Orden mayor a menor:</h3>`;
+            resultadosHTML += `<ul>`;
+            edades.forEach(edad => {
+                resultadosHTML += `<li>${edad}</li>`;
+            });
+            resultadosHTML += `</ul>`;
+            resultadosHTML += `<p>Total mayores: ${mayores}</p>`;
+            resultadosHTML += `<p>Total menores: ${menores}</p>`;
+
+            document.getElementById('resultados').innerHTML = resultadosHTML;
+        }
+    </script>
+</body>
+</html>
